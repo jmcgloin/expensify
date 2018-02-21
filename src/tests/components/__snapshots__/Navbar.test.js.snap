@@ -17,19 +17,5 @@ exports[`should render navbar element correctly 1`] = `
   >
     Add
   </NavLink>
-  <NavLink
-    activeClassName="is-active"
-    ariaCurrent="true"
-    to="/help"
-  >
-    Help
-  </NavLink>
-  <NavLink
-    activeClassName="is-active"
-    ariaCurrent="true"
-    to="/dne"
-  >
-    DNE
-  </NavLink>
 </nav>
 `;

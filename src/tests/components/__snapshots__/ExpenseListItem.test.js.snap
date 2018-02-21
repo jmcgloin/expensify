@@ -7,8 +7,9 @@ exports[`should render expense list item 1`] = `
   </h3>
   <p>
     Amount: 
-    10000
+    $100.00
        | Date Created: 
+    Mon, Jan 1st, 2018
     <Link
       replace={false}
       to="/edit/1"
