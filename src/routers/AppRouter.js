@@ -25,6 +25,3 @@ const AppRouter = () => (
 );
 
 export default AppRouter;
-
-
-/*<Route path="/edit/:id" component={ EditExpensePage } />*/

@@ -1,4 +1,4 @@
 node_modules/
 *.sublime*
-public/bundle*
-public/styles*
+public/scripts/bundle*
+public/scripts/styles*
