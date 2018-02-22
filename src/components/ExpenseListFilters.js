@@ -16,7 +16,6 @@ export class ExpenseListFilters extends React.Component {
 		this.setState(() => ({ calendarFocused }));
 	};
 	onSortChange = (e) => {
-		console.log("value", e.target.value);
 		e.target.value === "createdAt" ?
 			this.props.sortByDate() :
 			this.props.sortByAmount();
