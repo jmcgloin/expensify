@@ -13,6 +13,7 @@ import configureStore from "./store/configureStore";
 import getVisibleExpenses from "./selectors/expenses";
 import { addExpense, removeExpense } from "./actions/expenses";
 import { setTextFilter } from "./actions/filters";
+import "./firebase/firebase";
 
 // ===STORE=== //
 const store = configureStore();

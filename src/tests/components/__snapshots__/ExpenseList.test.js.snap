@@ -6,7 +6,7 @@ exports[`should render expense list with expenses 1`] = `
     amount={10000}
     createdAt={"2018-01-01T05:00:00.000Z"}
     description="A bill"
-    id={1}
+    id="1"
     key="1"
     note="A note"
   />
@@ -14,7 +14,7 @@ exports[`should render expense list with expenses 1`] = `
     amount={15000}
     createdAt={"2018-01-15T05:00:00.000Z"}
     description="B bill"
-    id={2}
+    id="2"
     key="2"
     note="B note"
   />
@@ -22,7 +22,7 @@ exports[`should render expense list with expenses 1`] = `
     amount={8000}
     createdAt={"2017-02-20T05:00:00.000Z"}
     description="Gas"
-    id={3}
+    id="3"
     key="3"
     note="Corn!  It gives ya gas."
   />
