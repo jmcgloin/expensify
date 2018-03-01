@@ -11,7 +11,7 @@ import "react-dates/lib/css/_datepicker.css";
 import AppRouter from "./routers/AppRouter";
 import configureStore from "./store/configureStore";
 import getVisibleExpenses from "./selectors/expenses";
-import { addExpense, removeExpense } from "./actions/expenses";
+import { startSetExpenses } from "./actions/expenses";
 import { setTextFilter } from "./actions/filters";
 import "./firebase/firebase";
 
@@ -26,4 +26,8 @@ const jsx = (
 );
 
 // ===REACT DOM=== //
-ReactDOM.render(jsx, document.getElementById("app"));
+ReactDOM.render(<p>loading...</p>, document.getElementById("app"));
+
+store.dispatch(startSetExpenses()).then(() => {
+	ReactDOM.render(jsx, document.getElementById("app"));
+});

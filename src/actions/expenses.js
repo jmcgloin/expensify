@@ -22,7 +22,7 @@ export const startAddExpense = (expenseData = {}) => {
 			dispatch(addExpense({ id: ref.key, ...expense }));
 		});
 	};
-}
+};
 
 
 // ===REMOVE_EXPENSE=== //
@@ -37,3 +37,23 @@ export const editExpense = (id, updates) => ({
 	id,
 	updates
 });
+
+// ===SET_EXPENSES=== //
+export const setExpenses = (expenses) => ({
+	type: "SET_EXPENSES",
+	expenses
+});
+
+
+// ===START_SET_EXPENSES=== //
+export const startSetExpenses = () => {
+	return(dispatch) => {
+		return database.ref("expenses").once("value").then((snapshot) => {
+			let expenses = [];
+			snapshot.forEach((child) => {
+				expenses.push({ id:child.key, ...child.val() });
+			});
+			dispatch(setExpenses(expenses));
+		});
+	};
+};

@@ -9,7 +9,7 @@ exports[`should render expense list item 1`] = `
     Amount: 
     $100.00
        | Date Created: 
-    Mon, Jan 1st, 2018
+    Mon, Feb 12th, 2018
     <Link
       replace={false}
       to="/edit/1"

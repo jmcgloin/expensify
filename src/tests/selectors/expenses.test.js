@@ -10,7 +10,7 @@ test('return expenses filtered by text and sorted by amount with no dates', () =
 	expect(filteredExpenses).toEqual([expenses[1], expenses[0]])
 });
 
-test('return expenses filtered by text and sorted by date with no dates', () => {
+test('return expenses filtered by text and sorted by date', () => {
 	const text = "a";
 	const filteredExpenses = getVisibleExpenses(expenses, {text, sortBy: "createdAt",
 		startDate:undefined, endDate: undefined});
@@ -19,8 +19,8 @@ test('return expenses filtered by text and sorted by date with no dates', () => 
 });
 
 test('return expenses filtered by start and end date and sorted by amount', () => {
-	const startDate = moment("2017-01-01");
-	const endDate = moment("2018-01-02");
+	const startDate = moment('218-02-07');
+	const endDate = moment('2018-02-13');
 	const filteredExpenses = getVisibleExpenses(expenses, {text: "", sortBy: "amount",
 		startDate, endDate});
 

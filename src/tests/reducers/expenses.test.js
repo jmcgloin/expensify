@@ -1,5 +1,6 @@
+import moment from "moment";
 import expensesReducer from "../../reducers/expenses";
-import { addExpense, removeExpense, editExpense } from "../../actions/expenses";
+import { addExpense, removeExpense, editExpense, setExpenses } from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
 
 test('should set a default array', () => {
@@ -37,5 +38,19 @@ test('should not edit any expenses if no id is supplied', () => {
 		amount: 120000
 	};
 	const returnedState = expensesReducer(expenses, editExpense(5, updates));
+	expect(returnedState).toEqual(expenses);
+});
+
+test('should set expenses', () => {
+	const state = [
+		{
+			description: "Old bill",
+			amount: 25000,
+			note: "Old note",
+			createdAt: moment('2017-02-12').valueOf(),
+			id: "old1"
+		}
+	];
+	const returnedState = expensesReducer(state, setExpenses(expenses));
 	expect(returnedState).toEqual(expenses);
 });

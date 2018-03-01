@@ -4,7 +4,7 @@ exports[`should render expense list with expenses 1`] = `
 <div>
   <ExpenseListItem
     amount={10000}
-    createdAt={"2018-01-01T05:00:00.000Z"}
+    createdAt={1518411600000}
     description="A bill"
     id="1"
     key="1"
@@ -12,7 +12,7 @@ exports[`should render expense list with expenses 1`] = `
   />
   <ExpenseListItem
     amount={15000}
-    createdAt={"2018-01-15T05:00:00.000Z"}
+    createdAt={1519102800000}
     description="B bill"
     id="2"
     key="2"
@@ -20,7 +20,7 @@ exports[`should render expense list with expenses 1`] = `
   />
   <ExpenseListItem
     amount={8000}
-    createdAt={"2017-02-20T05:00:00.000Z"}
+    createdAt={1518066000000}
     description="Gas"
     id="3"
     key="3"
