@@ -17,6 +17,7 @@ beforeEach((done) => {
 	database.ref('expenses').set(expensesData).then(() => done());
 });
 
+// ===REMOVE EXPENSE ACTION===//
 test('should set up remove expense action object', () => {
 	const action = removeExpense(123);
 	expect(action).toEqual(
@@ -27,6 +28,7 @@ test('should set up remove expense action object', () => {
 	);
 });
 
+// ===REMOVE FROM FIREBASE=== //
 test('should remove an expense from firebase', (done) => {
 	const store = createMockStore({});
 	const id = expenses[0].id;
@@ -43,6 +45,7 @@ test('should remove an expense from firebase', (done) => {
 	});
 });
 
+// ===SET EDIT ACTION===///
 test('should set up an edit expense action object', () => {
 	const action = editExpense(123, { description: "edited" });
 	expect(action).toEqual(
@@ -56,6 +59,31 @@ test('should set up an edit expense action object', () => {
 	);
 });
 
+// ===EDIT EXPENSE ON FIREBASE=== //
+test('should edit an expense on firebase', (done) => {
+	const updates = {
+		amount: 5000
+	};
+	const id = expenses[2].id;
+	const store = createMockStore({});
+	store.dispatch(startEditExpense(id, updates)).then(() => {
+		const actions = store.getActions();
+		expect(actions[0]).toEqual({
+			type: "EDIT_EXPENSE",
+			id,
+			updates
+		});
+		return database.ref(`expenses/${ id }`).once("value");
+	}).then((snapshot) => {
+		expect({ id, ...snapshot.val() }).toEqual({
+			...expenses[2],
+			...updates
+		});
+		done();
+	});
+});
+
+// ===ADD EXPENSE TO FIREBASE=== //
 test('should add expense to database and store ', (done) => {
 	const expenseData = {
 		description: "B bill",
@@ -80,6 +108,7 @@ test('should add expense to database and store ', (done) => {
 	});;
 });
 
+// ===ADD EXPENSE TO FIREBASE=== //
 test('should add expense with defaults to database and store ', (done) => {
 	const expenseData = {
 		description: "",
@@ -104,6 +133,7 @@ test('should add expense with defaults to database and store ', (done) => {
 	});;
 });
 
+// ===ADD EXPENSE ACTION=== //
 test('should set up an add expense action object with supplied data', () => {
 	const action = addExpense(expenses[0]);
 	expect(action).toEqual(
@@ -114,7 +144,7 @@ test('should set up an add expense action object with supplied data', () => {
 	);
 });
 
-
+// ===SET EXPENSE ACTION=== //
 test('should set up a set expenses action', () => {
 	const action = setExpenses(expenses);
 	expect(action).toEqual({
@@ -123,6 +153,7 @@ test('should set up a set expenses action', () => {
 	});
 });
 
+// ===GET DATA FROM FIREBASE=== //
 test('should get data from firebase', (done) => {
 	const store = createMockStore({});
 	store.dispatch(startSetExpenses()).then(() => {
