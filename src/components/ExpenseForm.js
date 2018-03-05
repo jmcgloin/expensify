@@ -2,6 +2,7 @@ import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
 import { SingleDatePicker } from "react-dates";
+import { history } from "../routers/AppRouter";
 
 export default class ExpenseForm extends React.Component {
 	constructor(props) {
@@ -15,7 +16,7 @@ export default class ExpenseForm extends React.Component {
 			calendarFocused: false,
 			errorMessage: null
 		};
-	}
+	};
 	onDescriptionChange = (e) => {
 		const errorMessage = this.state.errorMessage && null;
 		this.setState({
@@ -58,6 +59,9 @@ export default class ExpenseForm extends React.Component {
 	onFocusChange = ({ focused }) => {
 		this.setState(() => ({ calendarFocused: focused }))
 	};
+	onCancel = () => {
+		history.push("/dashboard");
+	}
 	render() {
 		return (
 			<div>
@@ -93,6 +97,7 @@ export default class ExpenseForm extends React.Component {
 						onInput={this.onNoteChange}
 					/>
 					<button>Submit</button>
+					<button onClick={ this.onCancel }>Cancel</button>
 				</form>
 			</div>
 		);

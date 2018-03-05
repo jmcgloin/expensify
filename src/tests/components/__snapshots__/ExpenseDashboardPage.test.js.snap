@@ -2,6 +2,13 @@
 
 exports[`should render expense dashboard 1`] = `
 <div>
+  <NavLink
+    activeClassName="is-active"
+    ariaCurrent="true"
+    to="/create"
+  >
+    Add
+  </NavLink>
   <Connect(ExpensesSummary) />
   <Connect(ExpenseListFilters) />
   <Connect(ExpenseList) />

@@ -8,12 +8,12 @@ import "normalize.css/normalize.css";
 import "react-dates/initialize";
 import { DateRangePicker } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
-import AppRouter from "./routers/AppRouter";
+import { firebase } from "./firebase/firebase";
+import AppRouter, { history } from "./routers/AppRouter";
 import configureStore from "./store/configureStore";
 import getVisibleExpenses from "./selectors/expenses";
 import { startSetExpenses } from "./actions/expenses";
-import { setTextFilter } from "./actions/filters";
-import "./firebase/firebase";
+import { login, logout } from "./actions/auth";
 
 // ===STORE=== //
 const store = configureStore();
@@ -28,6 +28,25 @@ const jsx = (
 // ===REACT DOM=== //
 ReactDOM.render(<p>loading...</p>, document.getElementById("app"));
 
-store.dispatch(startSetExpenses()).then(() => {
-	ReactDOM.render(jsx, document.getElementById("app"));
+let hasRendered = false;
+
+const renderApp = () => {
+	if(!hasRendered) {
+		ReactDOM.render(jsx, document.getElementById("app"));
+		hasRendered = !hasRendered;
+	}
+};
+
+firebase.auth().onAuthStateChanged((user) => {
+	if(user) {
+		store.dispatch(login(user.uid));
+		store.dispatch(startSetExpenses()).then(() => {
+			renderApp();
+		});
+		if(history.location.pathname === "/") history.push("/dashboard");
+	} else {
+		store.dispatch(logout());
+		renderApp();
+		history.push("/");
+	}
 });
